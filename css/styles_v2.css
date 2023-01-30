@@ -27,13 +27,20 @@ body {
 .library {
   grid-area: library;
   background-color: rgb(129, 88, 88);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-areas: "title" "books";
+  grid-template-rows: 1fr 10fr;
 }
-.library .depth {
-  background-color: rgb(146, 133, 115);
-  grid-area: library;
+.library .books {
+  background-color: green;
+  grid-area: books;
+  display: grid;
+  grid-template-areas: "book book book book" "book book book book";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+.library .books .book {
+  background-color: white;
 }
 
 .book-form {

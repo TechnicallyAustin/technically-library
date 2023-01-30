@@ -11,8 +11,7 @@ function library(){
     const library = document.body.appendChild(document.createElement("div"));
     library.setAttribute("class", "library");
 
-    const depth = library.appendChild(document.createElement("div"));
-    depth.setAttribute("class", "depth")
+
 
     function newBook(){
         const formContainer = document.body.appendChild(document.createElement("div"))
@@ -112,6 +111,10 @@ function library(){
         const shelves = library.appendChild(document.createElement("div"));
         shelves.setAttribute("class", "shelves")
 
-        function books(){}
-    };shelves
+        function books(){
+            const books = library.appendChild(document.createElement("div"));
+            books.setAttribute("class", "books");
+        }; books()
+
+    };shelves()
 }; library()
