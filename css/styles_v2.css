@@ -7,17 +7,65 @@ body {
   width: 100vw;
   background-color: black;
   display: grid;
-  grid-template-areas: "header header" "form library" "form library" "footer footer";
+  grid-template-areas: "header header" "form library" "aside library" "footer footer";
   grid-template-columns: 4fr 7fr;
   grid-template-rows: 1fr 5fr 5fr 1fr;
 }
 
+.nav-bar {
+  grid-area: header;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-bar h2 {
+  font-size: 36px;
+}
+
 .library {
   grid-area: library;
-  background-color: tan;
+  background-color: rgb(129, 88, 88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.library .depth {
+  background-color: rgb(146, 133, 115);
+  grid-area: library;
+  width: 90%;
+  height: 80vh;
 }
 
 .book-form {
-  background-color: white;
+  color: white;
+  background-color: black;
+  border: 12px solid green;
   grid-area: form;
+}
+.book-form .form-title {
+  font-size: 28px;
+  grid-column: title;
+}
+.book-form .new-book {
+  display: grid;
+  grid-template-areas: "legend" "input";
+  grid-template-rows: 3fr 2fr;
+  grid-auto-rows: 2fr;
+}
+.book-form .new-book .form-legend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.book-form .new-book .form-input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10%;
+  border: none;
+}
+.book-form .new-book input {
+  padding: 4%;
+  width: 80%;
 }/*# sourceMappingURL=styles_v2.css.map */
