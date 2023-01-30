@@ -28,6 +28,7 @@ function library(){
         function bookForm(){
             const form = formContainer.appendChild(document.createElement("form"));
             form.setAttribute("class","new-book");
+            form.setAttribute("action", "#")
 
             function legend(){
                 const legend = form.appendChild(document.createElement("legend")); // Form heading info

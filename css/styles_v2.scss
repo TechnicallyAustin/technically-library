@@ -24,6 +24,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1%;
 
     h2 {
         font-size: 36px;
@@ -40,8 +41,6 @@ body {
     .depth {
         background-color: rgb(146, 133, 115);
         grid-area: library;
-        width: 90%;
-        height: 80vh;
     }
 }
 
@@ -49,42 +48,48 @@ body {
 .book-form {
     color: white;
     background-color: black;
-    border: 12px solid green;
     grid-area: form;
+
 
 
     .form-title {
         font-size: 28px;
         grid-column: title;
+        text-indent: 2rem;
+        padding: 1%;
+        background-color: bisque;
+        color: black;
     }
 
     .new-book {
-
-
         display: grid;
         grid-template-areas:
             "legend"
             "input";
-        grid-template-rows: 3fr 2fr;
-        grid-auto-rows: 2fr;
+        grid-template-rows: 1fr 1fr;
+        grid-auto-rows: 1fr;
+        border: 2px solid green;
 
         .form-legend{
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            font-size: 22px;
+            text-indent: 2rem;
         }
 
         .form-input {
-            display: flex;
-            justify-content: flex-start;
+            display: grid;
+            grid-template-areas: "label input";
+            grid-template-columns: 1fr 4fr;
             align-items: center;
-            gap: 10%;
+            justify-items: center;
             border: none;
         }
 
         input {
-            padding: 4%;
-            width: 80%;
+            padding: 2%;
+            width: 75%;
         }
     }
 
