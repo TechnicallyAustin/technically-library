@@ -8,13 +8,19 @@ function Book(title, author, pages, read){
 }
 
 Book.prototype.info = function() {
-    console.log(this)
+    return this.author
 }
 
+Book.prototype.id = function() {
+ return myLibrary.findIndex((element) => element.title === this.title)
+};
 
 
 
-
+// need to set up form validaitons
+// check to see a better way of storing book objects with titles
+//  add a button to remove books from the library
+// either create books on form submission or direectly from thee library
 function formHandling(){
     function formEvent(){
         const form = document.querySelector(".new-book");
@@ -34,11 +40,11 @@ function formHandling(){
 
         // creates a book object using the form data
         let book = formInput.title
-        book = Object.create(new Book(formInput.title, formInput.author, formInput.pages, formInput.read));
-
+        book  = Object.create(new Book(formInput.title, formInput.author, formInput.pages, formInput.read));
+        
         // adds the book to the myLibrary array
         myLibrary.push(book)
-
+        console.log(book.id())
         // calls for the creation of a new library object
         newLibraryBook(book.title, book.author, book.pages, book.read)
     };
@@ -47,8 +53,10 @@ function formHandling(){
         console.log(title)
         const booksContainer = document.querySelector(".books")
 
+        console.log(test)
         let book = booksContainer.appendChild(document.createElement("div"));
-        book.setAttribute("class", `${title} book`);
+        book.setAttribute("class", `${book} book`);
+
 
         function bookTitle(){
             const bookTitle = book.appendChild(document.createElement("h3"));
@@ -72,6 +80,8 @@ function formHandling(){
             bookRead.setAttribute("class", "new-book-read");
             bookRead.textContent = `${read}`;
         }; bookRead()
+
+        console.log(myLibrary)
     }; 
 
     function submitEvent(){
@@ -85,10 +95,8 @@ function formHandling(){
 }; formHandling()
 
 let test = Object.create(new Book("Test", "Austin", 45, "true"));
-
-
-
-console.log(myLibrary)
+myLibrary.push(test)
+console.log(test.id())
 
 
 

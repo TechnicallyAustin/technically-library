@@ -18,6 +18,8 @@ function library(){
         formContainer.setAttribute("class", "book-form")
 
 
+        // create a div that holds a button and the title
+        // the button creates the form.
        function formTitle() {
             const formTitle = formContainer.appendChild(document.createElement("h3"));
             formTitle.setAttribute("class", "form-title");
