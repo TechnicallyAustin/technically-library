@@ -44,18 +44,17 @@ function formHandling(){
         
         // adds the book to the myLibrary array
         myLibrary.push(book)
-        console.log(book.id())
         // calls for the creation of a new library object
-        newLibraryBook(book.title, book.author, book.pages, book.read)
+        newLibraryBook(book.title, book.author, book.pages, book.read, book.id())
     };
     
-    function newLibraryBook(title, author, pages, read){
-        console.log(title)
+    function newLibraryBook(title, author, pages, read, id){
+        console.log(title, id)
         const booksContainer = document.querySelector(".books")
 
         console.log(test)
         let book = booksContainer.appendChild(document.createElement("div"));
-        book.setAttribute("class", `${book} book`);
+        book.setAttribute("class", `${title} ${id} book`);
 
 
         function bookTitle(){
