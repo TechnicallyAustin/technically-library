@@ -11,18 +11,23 @@ Book.prototype.info = function() {
     console.log(this)
 }
 
-function addBookToLibrary(){
-// set a variable to either the form or specific form inputs
-// capture the information from the form
-// create a book object with a book prototype
-// add that book object the the library array
 
-// update the Dom with the book object and required features
 
+
+function bookData(){
+    const formInput = {
+        title: document.querySelector("#book-title").value,
+        author: document.querySelector("#book-author").value,
+        pages: document.querySelector("#book-pages").value,
+        read: document.querySelector("#book-read").value
+    }; formInput()
+
+    let book = Object.create(new Book(title, author, pages, read));
+    console.log(book)
 
 }
 
-
-let test = Object.create(Book.prototype)
+let test = Object.create(new Book("Test", "Austin", 45, "true"));
+//console.log(test)
 
 
