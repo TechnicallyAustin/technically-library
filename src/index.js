@@ -12,8 +12,9 @@ Book.prototype.info = function() {
 }
 
 Book.prototype.id = function() {
- return myLibrary.findIndex((element) => element.title === this.title)
-};
+
+}
+
 
 
 
@@ -22,6 +23,7 @@ Book.prototype.id = function() {
 //  add a button to remove books from the library
 // either create books on form submission or direectly from thee library
 function formHandling(){
+
     function formEvent(){
         const form = document.querySelector(".new-book");
         form.addEventListener("submit", function(event){
@@ -95,7 +97,6 @@ function formHandling(){
 
 let test = Object.create(new Book("Test", "Austin", 45, "true"));
 myLibrary.push(test)
-console.log(test.id())
 
 
 
