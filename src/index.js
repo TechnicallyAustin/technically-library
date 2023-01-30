@@ -57,19 +57,19 @@ function formHandling(){
         }; bookTitle()
 
         function bookAuthor(){
-            const bookauthor = book.appendChild(document.createElement("h3"));
+            const bookauthor = book.appendChild(document.createElement("p"));
             bookauthor.setAttribute("class", "new-book-author");
             bookauthor.textContent = `${author}`;
         }; bookAuthor()
 
         function bookPages(){
-            const bookPages = book.appendChild(document.createElement("h3"));
+            const bookPages = book.appendChild(document.createElement("p"));
             bookPages.setAttribute("class", "new-book-pages");
-            bookPages.textContent = `${pages}`;
+            bookPages.textContent = `${pages} pages`;
         }; bookPages()
         function bookRead(){
-            const bookRead = book.appendChild(document.createElement("h3"));
-            bookRead.setAttribute("class", "new-book-author");
+            const bookRead = book.appendChild(document.createElement("p"));
+            bookRead.setAttribute("class", "new-book-read");
             bookRead.textContent = `${read}`;
         }; bookRead()
     }; 
@@ -85,6 +85,7 @@ function formHandling(){
 }; formHandling()
 
 let test = Object.create(new Book("Test", "Austin", 45, "true"));
+
 
 
 console.log(myLibrary)

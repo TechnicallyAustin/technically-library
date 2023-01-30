@@ -35,12 +35,40 @@ body {
   background-color: green;
   grid-area: books;
   display: grid;
-  grid-template-areas: "book book book book" "book book book book";
+  grid-template-areas: "book book book book" "book book book book" "book book book book";
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 1fr;
+  row-gap: 4%;
+  -moz-column-gap: 2%;
+       column-gap: 2%;
 }
 .library .books .book {
-  background-color: white;
+  background-color: tan;
+  border-left: 15px solid brown;
+  display: grid;
+  grid-template-areas: "title title" "author author" "pages read";
+  grid-template-rows: 4fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+}
+.library .books .book .new-book-title {
+  grid-area: title;
+  font-size: 22px;
+  align-self: flex-start;
+}
+.library .books .book .new-book-author {
+  grid-area: author;
+  font-size: 18px;
+  align-self: flex-end;
+}
+.library .books .book .new-book-pages {
+  grid-area: pages;
+  font-size: 12px;
+}
+.library .books .book .new-book-read {
+  grid-area: read;
+  font-size: 12px;
 }
 
 .book-form {
