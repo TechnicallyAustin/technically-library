@@ -10,63 +10,106 @@ function Books(title, author, pages, read){
  Books.prototype.id = function(){}
 
     const createLibraryForm = {
-        // builds new book form
-        form: function(){
-            let bookForm = document.body.appendChild(document.createElement("form"));
-            bookForm.setAttribute("class", "book-form")
-            bookForm
+        // add fieldsets for each input
+        form: null,
+        
+        createForm: function(){
+            const formContainer = document.body.appendChild(document.createElement("div"));
+            formContainer.setAttribute("class", "book-form")
+
+            this.form = formContainer.appendChild(document.createElement("form"));
+            this.form.setAttribute("class", "new-book")
         },
 
         prevent: function(){
-            this.form().addEventListener("submit", function(event){
+            this.form.addEventListener("submit", function(event){
                 event.preventDefault()
             })
         },
         legend: function(){
-            const legend = this.form().appendChild(document.createElement("legend"));
-            legend.setAttribute("class", "form-legend")
+            const legend = this.form.appendChild(document.createElement("legend"));
+            legend.setAttribute("class", "form-legend");
+            legend.textContent = "Add a new book here!";
         },
         title: function(){
-            const label = this.form().appendChild(document.createElement("label"));
-            label.setAttribute("for", "book-title")
-            const title = this.form().appendChild(document.createElement("input"));
-            title.setAttribute("class", "book-title");
-            title.textContent = "Title";
+            const field = this.form.appendChild(document.createElement("fieldset"));
+            field.setAttribute("class", "title-input form-input");
+
+            let titleLabel = field.appendChild(document.createElement("label"));
+            titleLabel.setAttribute("for", "book-title");
+            titleLabel.textContent = "Title";
+
+            const title = field.appendChild(document.createElement("input"));
+            title.setAttribute("id", "book-title");
+            title.setAttribute("type", "text");
+            title.setAttribute("placeholder", "Hunger Games");
         },
         author: function(){
-            const label = this.form().appendChild(document.createElement("label"));
-            label.setAttribute("for", "book-author")
-            const title = this.form().appendChild(document.createElement("input"));
-            title.setAttribute("class", "book-author");
-            title.textContent = "Author";
+            const field = this.form.appendChild(document.createElement("fieldset"));
+            field.setAttribute("class", "author-input form-input");
+
+            let authorLabel = field.appendChild(document.createElement("label"));
+            authorLabel.setAttribute("for", "book-author");
+            authorLabel.textContent = "Author";
+
+            const author = field.appendChild(document.createElement("input"));
+            author.setAttribute("id", "book-author");
+            author.setAttribute("type", "text");
+            author.setAttribute("placeholder", "Susan Collins");
         },
         pages: function(){
-            const label = this.form().appendChild(document.createElement("label"));
-            label.setAttribute("for", "book-pages")
-            const title = this.form().appendChild(document.createElement("input"));
-            title.setAttribute("class", "book-pages");
-            title.textContent = "# of Pages";
+            const field = this.form.appendChild(document.createElement("fieldset"));
+            field.setAttribute("class", "pages-input form-input");
+
+            let pagesLabel = field.appendChild(document.createElement("label"));
+            pagesLabel.setAttribute("for", "book-pages");
+            pagesLabel.textContent = "# of Pages";
+
+            const pages = field.appendChild(document.createElement("input"));
+            pages.setAttribute("id", "book-pages");
+            pages.setAttribute("type", "number");
+            pages.setAttribute("placeholder", "395");
         },
         read: function(){
-            const label = this.form().appendChild(document.createElement("label"));
-            label.setAttribute("for", "book-read")
-            const title = this.form().appendChild(document.createElement("input"));
-            title.setAttribute("class", "book-read");
-            title.textContent = "Read?";
+            const field = this.form.appendChild(document.createElement("fieldset"));
+            field.setAttribute("class", "read-input form-input");
+            let readLabel = field.appendChild(document.createElement("label"));
+            readLabel.setAttribute("for", "book-read");
+            readLabel.textContent = "Read?";
+
+            const read = field.appendChild(document.createElement("input"));
+            read.setAttribute("id", "book-read");
+            read.setAttribute("type", "checkbox");
+            read.setAttribute("value", "read");
         },
         submit: function(){
-            const label = this.form().appendChild(document.createElement("label"));
-            label.setAttribute("for", "book-title")
-            const title = this.form().appendChild(document.createElement("input"));
-            title.setAttribute("class", "book-title");
-            title.textContent = "Title";
+            const field = this.form.appendChild(document.createElement("fieldset"));
+            field.setAttribute("class", "submit-input form-input");
+
+            submitLabel = field.appendChild(document.createElement("label"));
+            submitLabel.setAttribute("for", "add-book");
+            const submit = field.appendChild(document.createElement("input"));
+            submit.setAttribute("type", "submit");
+            submit.setAttribute("value", "Add Book");
+            submit.setAttribute("id", "add-book");
         }
     }; // this is run on button click event
 
-    const BookButtonEvent = {
+    function BookButtonEvent() {
       // locate button
-      click: function (){}
-    };
+        const button = document.getElementById("new-book-button");
+        button.addEventListener("click", () =>{
+            console.log("clicked")
+            createLibraryForm.createForm();
+            createLibraryForm.legend()
+            createLibraryForm.title()
+            createLibraryForm.author()
+            createLibraryForm.pages()
+            createLibraryForm.read()
+            createLibraryForm.submit()
+            createLibraryForm.prevent()
+        })
+    }; BookButtonEvent()
 
     const bookByForm = {
         // builds a book object given the book form info
@@ -81,6 +124,7 @@ function Books(title, author, pages, read){
       add: function(){} // calls bookByForm()
     };
 
-console.log(createLibraryForm.prevent())
+
+
 
 
