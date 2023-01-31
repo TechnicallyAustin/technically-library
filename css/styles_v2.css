@@ -71,6 +71,17 @@ body {
   font-size: 12px;
 }
 
+.create-form {
+  background-color: black;
+  color: white;
+  width: 60%;
+  height: 20%;
+  align-self: center;
+  justify-self: center;
+  font-size: 22px;
+  border: 2px solid white;
+}
+
 .book-form {
   color: white;
   background-color: black;
