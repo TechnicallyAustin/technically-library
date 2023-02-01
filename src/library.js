@@ -99,9 +99,9 @@ const createLibraryForm = {
   },
 }; // this is run on button click event
 
-function formBuilder() {
+function formBuilder() { // should change the text of the button clicked
   const form = document.querySelector(".new-book");
-  const button = document.getElementById("add-book");
+  const button = document.getElementById("new-book-button");
   if (form === null) {
     console.log("clicked");
     createLibraryForm.createForm();
@@ -112,23 +112,34 @@ function formBuilder() {
     createLibraryForm.read();
     createLibraryForm.submit();
     createLibraryForm.prevent();
-  } else {
-    console.log("form exists");
     button.removeEventListener("click", formBuilder);
+  } else {
+    button.setAttribute("style", "border: 2px solid red")
+    console.log("form exists");
   }
-}
+}; // creates a form if one doesnt exist. otherwise removes the button event
+
 const formEvents = {
-    createFormButton: function(){
+    createFormEvent: function(){
         const button = document.getElementById("new-book-button");
         button.addEventListener("click", formBuilder);
-    },
-    removeForm: function(){}, // removes the form after submit is cliked
+    }, 
     removeFormEvent: function(){}, // removes the event listener from the create a new form button
-    submitFormButton: function(){}, // calls booksByForm to create an object from the books
+    removeForm: function(){}, // removes the form after submit is cliked
+    submitFormButton: function(){
+        // adds event listener to the form submit button
+        // when submitted, it takes the inputs on the form and passes them into books by form
+            // books by fomr creates the book object and adds it to the library
+        // removes the from from the page
+        // adds button event listener to re recreate form
 
+    } // calls booksByForm to create an object from the books calls remove Form to delete the form
+};
 
+function formLogic(){
+    formEvents.createFormEvent()
 
-}
+}; formLogic()
 
 const bookByForm = {
   // builds a book object given the book form info
@@ -139,8 +150,4 @@ const bookByForm = {
   add: function () {}
 }; // called from the submit event
 
-const sumbitButtonEvent = {
-  addToLibrary: function (){
-    bookByForm
-  }, // calls bookByForm()
-};
+
