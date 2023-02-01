@@ -99,47 +99,44 @@ const createLibraryForm = {
   },
 }; // this is run on button click event
 
-function formBuilder() { // should change the text of the button clicked
-  const form = document.querySelector(".new-book");
-  const button = document.getElementById("new-book-button");
-  if (form === null) {
-    console.log("clicked");
-    createLibraryForm.createForm();
-    createLibraryForm.legend();
-    createLibraryForm.title();
-    createLibraryForm.author();
-    createLibraryForm.pages();
-    createLibraryForm.read();
-    createLibraryForm.submit();
-    createLibraryForm.prevent();
-    button.removeEventListener("click", formBuilder);
-  } else {
-    button.setAttribute("style", "border: 2px solid red")
-    console.log("form exists");
-  }
-}; // creates a form if one doesnt exist. otherwise removes the button event
+const formBuilder = { // should change the text of the button clicked
+   form: document.querySelector(".new-book"),
+   button: document.getElementById("new-book-button"),
+   build: function(){
+    createLibraryForm.createForm()
+    createLibraryForm.legend()
+    createLibraryForm.author()
+    createLibraryForm.pages()
+    createLibraryForm.read()
+    createLibraryForm.submit()
+    createLibraryForm.prevent()
+   },
+   buttonEvent: function(){ 
+    button.setAttribute("value", "Looks interesting!")
+    button.removeEventListener("click", formBuilder)
+   },
+    submitEvent: function(){
+        const submit = document.getElementById("add-book")
+        submit.addEventListener("click", () => {
+          console.log("Test");
+          // adds event listener to the form submit button
 
-const formEvents = {
-    createFormEvent: function(){
-        const button = document.getElementById("new-book-button");
-        button.addEventListener("click", formBuilder);
-    }, 
-    removeFormEvent: function(){}, // removes the event listener from the create a new form button
-    removeForm: function(){}, // removes the form after submit is cliked
-    submitFormButton: function(){
-        // adds event listener to the form submit button
-        // when submitted, it takes the inputs on the form and passes them into books by form
-            // books by fomr creates the book object and adds it to the library
-        // removes the from from the page
-        // adds button event listener to re recreate form
+          // when submitted, it takes the inputs on the form and passes them into books by form
+          // books by fomr creates the book object and adds it to the library
+          // removes the from from the page
+          // adds button event listener to re recreate form
 
-    } // calls booksByForm to create an object from the books calls remove Form to delete the form
-};
+          // calls booksByForm to create an object from the books calls remove Form to delete the form
+        })
 
-function formLogic(){
-    formEvents.createFormEvent()
+}
 
-}; formLogic()
+} // creates a form if one doesnt exist. otherwise removes the button event
+
+function logic(){
+    formBuilder.build()
+    formBuilder.submitEvent()
+}
 
 const bookByForm = {
   // builds a book object given the book form info
@@ -149,5 +146,27 @@ const bookByForm = {
   read: function () {},
   add: function () {}
 }; // called from the submit event
+
+const formEvents = {
+    createFormEvent: function(){
+        const button = document.getElementById("new-book-button");
+        button.addEventListener("click", logic);
+    }, // creates an event listener that will build the form
+    removeForm: function(){}, // removes the form after submit is cliked
+};
+formEvents.createFormEvent()
+
+
+
+
+
+    
+    
+
+
+function createBook(){
+    console.log("create Book")
+}
+
 
 
