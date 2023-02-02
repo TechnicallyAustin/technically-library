@@ -1,15 +1,15 @@
 // mac mini edit
 myLibrary = [];
 
-function Books(title, author, pages, read) {
+function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
 }
 
-Books.prototype.info = function () {};
-Books.prototype.id = function () {};
+Book.prototype.info = function () {};
+Book.prototype.id = function () {};
 
 const createLibraryForm = {
   // add fieldsets for each input
@@ -167,8 +167,31 @@ formEvents.createFormEvent();
 
 function bookByForm(title, author, pages, read) {
   console.log(title, author, pages, read);
+  const newBook = new Book(title, author, pages, read)
+  myLibrary.push(newBook)
+  console.log("my Library", myLibrary, "new Book", newBook)
+  createBook(newBook)
+
 } // called from the submit event
 
-function createBook() {
-  console.log("create Book");
+function createBook(Book) {
+console.log("book created")
+const books = document.querySelector(".books")
+
+const card = books.appendChild(document.createElement("div"))
+card.setAttribute("class", "book")
+
+const bookInfo = {
+  title: function(){
+    const bookTitle = card.appendChild(document.createElement("h4"));
+    bookTitle.setAttribute("class", "new-book-title")
+  },
+  author: function(){},
+  pages: function(){},
+  read: function(){}
+  
+}
+
+
+
 }
