@@ -1,7 +1,8 @@
 // add remove book button on each book
   // each button has an event listener that will pop the book from myLibrary
   // removes the DOM card with the associated book
-  //
+  // need to create new books and display them from the library
+  // need validations for Form inputs
 
 
 myLibrary = [];
@@ -207,7 +208,8 @@ const bookInfo = {
     const bookRead = card.appendChild(document.createElement("div"))
     bookRead.setAttribute("class", "new-book-red")
     bookRead.textContent = `read?: ${Book.read}`
-  }
+  },
+  id: function(){}
 };
 bookInfo.title()
 bookInfo.author()
@@ -217,12 +219,12 @@ bookInfo.read()
 }; // takes a book object and creates a Dom element
 
 
-const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
-const bookTwo = new Book("Hunger Games", "Susan Collins", 395, false);
-const bookThree = new Book("Naruto", "Masashi Kisimoto", 700, true);
-const bookFour = new Book("One Piece", "Echiiro Oda", 100000, true);
-myLibrary.push(bookOne, bookTwo, bookThree, bookFour)
-console.log(myLibrary.indexOf(bookThree))
+//const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
+//const bookTwo = new Book("Hunger Games", "Susan Collins", 395, false);
+//const bookThree = new Book("Naruto", "Masashi Kisimoto", 700, true);
+//const bookFour = new Book("One Piece", "Echiiro Oda", 100000, true);
+//myLibrary.push(bookOne, bookTwo, bookThree, bookFour)
+//console.log(myLibrary.indexOf(bookThree))
 
 
 function libraryBooks(){
