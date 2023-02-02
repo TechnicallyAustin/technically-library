@@ -26,13 +26,13 @@ body {
 
 .library {
   grid-area: library;
-  background-color: rgb(129, 88, 88);
+  background-color: orange;
   display: grid;
   grid-template-areas: "title" "books";
   grid-template-rows: 1fr 10fr;
 }
 .library .books {
-  background-color: green;
+  background-color: black;
   grid-area: books;
   display: grid;
   grid-template-areas: "book book book book" "book book book book" "book book book book";
@@ -41,6 +41,7 @@ body {
   row-gap: 4%;
   -moz-column-gap: 2%;
        column-gap: 2%;
+  padding: 2%;
 }
 .library .books .book {
   background-color: tan;

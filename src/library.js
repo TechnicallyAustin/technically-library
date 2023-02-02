@@ -1,4 +1,9 @@
-// mac mini edit
+// add remove book button on each book
+  // each button has an event listener that will pop the book from myLibrary
+  // removes the DOM card with the associated book
+  //
+
+
 myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -173,11 +178,11 @@ function bookByForm(title, author, pages, read) {
   const newBook = new Book(title, author, pages, read)
   myLibrary.push(newBook)
   console.log("my Library", myLibrary, "new Book", newBook)
-  createBook(newBook)
+  //bookByDom(newBook)
 
-} // called from the submit event
+} // called from the submit event creates book objects and adds to the library
 
-function createBook(Book) {
+function bookByDom(Book) {
 const books = document.querySelector(".books")
 const card = books.appendChild(document.createElement("div"))
 card.setAttribute("class", "book")
@@ -209,13 +214,13 @@ bookInfo.author()
 bookInfo.pages()
 bookInfo.read()
 
-}
+}; // takes a book object and creates a Dom element
 
 
 const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
-const bookTwo = new Book("Huunger Games", "Susan Collins", 395, false);
+const bookTwo = new Book("Hunger Games", "Susan Collins", 395, false);
 const bookThree = new Book("Naruto", "Masashi Kisimoto", 700, true);
-const bookFour = new Book("One Piece", "10,000", "Eichiiro Oda", true)
+const bookFour = new Book("One Piece", "Echiiro Oda", 100000, true);
 myLibrary.push(bookOne, bookTwo, bookThree, bookFour)
 console.log(myLibrary.indexOf(bookThree))
 
@@ -224,5 +229,6 @@ function libraryBooks(){
   // loops through the library and runs the createBook() on each book
   myLibrary.forEach((book)=>{
     console.log(book.id())
+    bookByDom(book)
   })
 }; libraryBooks()

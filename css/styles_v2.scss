@@ -33,7 +33,7 @@ body {
 
 .library {
     grid-area: library;
-    background-color: rgb(129, 88, 88);
+    background-color: orange;
     display: grid;
     grid-template-areas:
         "title"
@@ -41,7 +41,7 @@ body {
     grid-template-rows: 1fr 10fr;
 
     .books {
-        background-color: green;
+        background-color: black;
         grid-area: books;
 
         display: grid;
@@ -53,6 +53,7 @@ body {
         grid-auto-rows: 1fr;
         row-gap: 4%;
         column-gap: 2%;
+        padding: 2%;
 
         .book{
             background-color: tan;
