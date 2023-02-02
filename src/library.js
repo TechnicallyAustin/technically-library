@@ -102,29 +102,52 @@ const createLibraryForm = {
 const formBuilder = { // should change the text of the button clicked
    form: document.querySelector(".new-book"),
    button: document.getElementById("new-book-button"),
+
    build: function(){
     createLibraryForm.createForm()
     createLibraryForm.legend()
+    createLibraryForm.title()
     createLibraryForm.author()
     createLibraryForm.pages()
     createLibraryForm.read()
     createLibraryForm.submit()
     createLibraryForm.prevent()
    },
+
    buttonEvent: function(){ 
+    const button = document.getElementById("new-book-button")
     button.setAttribute("value", "Looks interesting!")
     button.removeEventListener("click", formBuilder)
    },
-    submitEvent: function(){
-        const submit = document.getElementById("add-book")
-        submit.addEventListener("click", () => {
-          console.log("Test");
-          // adds event listener to the form submit button
 
-          // when submitted, it takes the inputs on the form and passes them into books by form
-          // books by fomr creates the book object and adds it to the library
-          // removes the from from the page
-          // adds button event listener to re recreate form
+    submitEvent: function(){
+      const form = document.querySelector(".new-book")
+      const submit = document.getElementById("add-book")
+      
+      submit.addEventListener("click", () => {
+        console.log("on submit");
+        
+        const formInputs = {
+          title: document.getElementById("book-title"),
+          author: document.getElementById("book-author"),
+          pages: document.getElementById("book-pages"),
+          read: document.getElementById("book-read")
+        }
+        
+        // when submitted, it takes the inputs on the form and passes them into books by form
+        bookByForm(
+          formInputs.title.value,
+          formInputs.author.value,
+          formInputs.pages.value,
+          formInputs.read.value 
+          )
+          
+        function removeForm(){
+          const formContainer = document.querySelector(".book-form")
+          const button = document.getElementById("new-book-button")
+          button.setAttribute("value", "Add a Book")
+          document.body.removeChild(formContainer)
+        }; removeForm()
 
           // calls booksByForm to create an object from the books calls remove Form to delete the form
         })
@@ -135,16 +158,12 @@ const formBuilder = { // should change the text of the button clicked
 
 function logic(){
     formBuilder.build()
+    formBuilder.buttonEvent()
     formBuilder.submitEvent()
 }
 
-const bookByForm = {
-  // builds a book object given the book form info
-  title: function () {},
-  author: function () {},
-  pages: function () {},
-  read: function () {},
-  add: function () {}
+function bookByForm(title, author, pages, read){
+console.log(title, author,pages, read)
 }; // called from the submit event
 
 const formEvents = {
