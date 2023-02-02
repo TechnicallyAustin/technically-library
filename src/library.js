@@ -175,9 +175,7 @@ function bookByForm(title, author, pages, read) {
 } // called from the submit event
 
 function createBook(Book) {
-console.log("book created")
 const books = document.querySelector(".books")
-
 const card = books.appendChild(document.createElement("div"))
 card.setAttribute("class", "book")
 
@@ -185,22 +183,28 @@ const bookInfo = {
   title: function(){
     const bookTitle = card.appendChild(document.createElement("h4"));
     bookTitle.setAttribute("class", "new-book-title")
+    bookTitle.textContent = Book.title
   },
   author: function(){
     const bookAuthor = card.appendChild(document.createElement("div"))
     bookAuthor.setAttribute("class", "new-book-author")
+    bookAuthor.textContent = Book.author
   },
   pages: function(){
     const bookPages = card.appendChild(document.createElement("div"))
     bookPages.setAttribute("class", "new-book-pages")
+    bookPages.textContent = `pages: ${Book.pages}`
   },
   read: function(){
     const bookRead = card.appendChild(document.createElement("div"))
     bookRead.setAttribute("class", "new-book-red")
+    bookRead.textContent = `read?: ${Book.read}`
   }
 
-}
-
-
+};
+bookInfo.title()
+bookInfo.author()
+bookInfo.pages()
+bookInfo.read()
 
 }
