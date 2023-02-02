@@ -9,7 +9,10 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = function () {};
-Book.prototype.id = function () {};
+Book.prototype.id = function () {
+  this.id = myLibrary.indexOf(this)
+  console.log(this.id)
+};
 
 const createLibraryForm = {
   // add fieldsets for each input
@@ -200,7 +203,6 @@ const bookInfo = {
     bookRead.setAttribute("class", "new-book-red")
     bookRead.textContent = `read?: ${Book.read}`
   }
-
 };
 bookInfo.title()
 bookInfo.author()
@@ -208,3 +210,19 @@ bookInfo.pages()
 bookInfo.read()
 
 }
+
+
+const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
+const bookTwo = new Book("Huunger Games", "Susan Collins", 395, false);
+const bookThree = new Book("Naruto", "Masashi Kisimoto", 700, true);
+const bookFour = new Book("One Piece", "10,000", "Eichiiro Oda", true)
+myLibrary.push(bookOne, bookTwo, bookThree, bookFour)
+console.log(myLibrary.indexOf(bookThree))
+
+
+function libraryBooks(){
+  // loops through the library and runs the createBook() on each book
+  myLibrary.forEach((book)=>{
+    console.log(book.id())
+  })
+}; libraryBooks()
