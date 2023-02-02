@@ -186,10 +186,19 @@ const bookInfo = {
     const bookTitle = card.appendChild(document.createElement("h4"));
     bookTitle.setAttribute("class", "new-book-title")
   },
-  author: function(){},
-  pages: function(){},
-  read: function(){}
-  
+  author: function(){
+    const bookAuthor = card.appendChild(document.createElement("div"))
+    bookAuthor.setAttribute("class", "new-book-author")
+  },
+  pages: function(){
+    const bookPages = card.appendChild(document.createElement("div"))
+    bookPages.setAttribute("class", "new-book-pages")
+  },
+  read: function(){
+    const bookRead = card.appendChild(document.createElement("div"))
+    bookRead.setAttribute("class", "new-book-red")
+  }
+
 }
 
 
