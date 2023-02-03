@@ -184,6 +184,7 @@ function bookByForm(title, author, pages, read) {
 } // called from the submit event creates book objects and adds to the library
 
 function bookByDom(Book) {
+
 const books = document.querySelector(".books")
 const card = books.appendChild(document.createElement("div"))
 card.setAttribute("class", "book")
@@ -219,8 +220,8 @@ bookInfo.read()
 }; // takes a book object and creates a Dom element
 
 
-//const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
-//const bookTwo = new Book("Hunger Games", "Susan Collins", 395, false);
+const bookOne = new Book("Eragon", "Chistopher paolini", 400, true);
+const bookTwo = new Book("Hunger Games", "Susan Collins", 395, false);
 //const bookThree = new Book("Naruto", "Masashi Kisimoto", 700, true);
 //const bookFour = new Book("One Piece", "Echiiro Oda", 100000, true);
 //myLibrary.push(bookOne, bookTwo, bookThree, bookFour)
@@ -230,7 +231,9 @@ bookInfo.read()
 function libraryBooks(){
   // loops through the library and runs the createBook() on each book
   myLibrary.forEach((book)=>{
-    console.log(book.id())
+    console.log(book.id)
     bookByDom(book)
   })
-}; libraryBooks()
+}; libraryBooks();
+
+bookByDom(bookOne)
