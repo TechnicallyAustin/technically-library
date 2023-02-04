@@ -1,2 +1,4 @@
 // handles form logical operations
-function form(){}
+function form(){
+    //DOM Selection
+}
