@@ -1,11 +1,12 @@
 
 // creates Semantic HTML elements
 function createLibrary() {
+  document.body.setAttribute("class", "container-fluid")
   // Header
   const headerElements = {
     header: function () {
       const head = document.body.appendChild(document.createElement("header"));
-      head.setAttribute("class", "header container-md border");
+      head.setAttribute("class", "col-12  bg-primary");
       this.head = head;
     }, // creates header container
     navbar: function () {
@@ -21,7 +22,7 @@ function createLibrary() {
   const mainElements = {
     main: function () {
       const main = document.body.appendChild(document.createElement("main"));
-      main.setAttribute("class", "main library");
+      main.setAttribute("class", "main library container col-12 bg-info");
       this.main = main;
     }, // creates the main with class Library
     section: function () {
@@ -32,6 +33,7 @@ function createLibrary() {
     article: function () {}, // create an aritcle per Book with class book
     aside: function () {
       const aside = this.main.appendChild(document.createElement("aside"));
+      aside.setAttribute("class", "aside col-4 bg-success")
       const button = aside.appendChild(document.createElement("button"));
     }, //  defines Form and form creation button
   };
@@ -45,7 +47,7 @@ function createLibrary() {
       const footer = document.body.appendChild(
         document.createElement("footer")
       );
-      footer.setAttribute("class", "footer");
+      footer.setAttribute("class", "row  bg-warning footer");
       this.footer = footer;
     }, // creates the footer element
     info: function () {
