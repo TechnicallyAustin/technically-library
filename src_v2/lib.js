@@ -27,8 +27,10 @@ function form(){
             submit: function(){}, // adds event listener that saves the information from form to create Book
             add: function(){} // adds an event listener to the button that will create the form
         };
-    };
-};
+
+        
+    }; formOperations()
+}; form()
 
 // Book Logic
 function bookOperations(){
@@ -42,6 +44,8 @@ function bookOperations(){
         remove: function(){}, // remove the Book from the library and the DOM
         library: function(){} // create the library of books using bookOptions.dom
     };
-};
+
+
+}; bookOperations()
 
 
