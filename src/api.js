@@ -1,5 +1,10 @@
-function header(){
+function body(){
+    const body = document.getElementsByTagName("body")
+    body.setAttribute("class", "container")
+    console.log(body)
+}; body()
 
+function header(){
     const nav = document.body.appendChild(document.createElement("div"))
     nav.setAttribute("class", "nav-bar")
     const title = nav.appendChild(document.createElement("h2"))
