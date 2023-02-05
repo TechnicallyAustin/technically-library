@@ -1,6 +1,6 @@
 // handles form logical operations
 function form(){
-    //DOM Selection
+    const form = document.querySelector(".new-book-form")
 
     function formOperations(){
         const formOptions = {
@@ -14,5 +14,6 @@ function form(){
             read: function(){}, // book read boolean input
             submit: function(){} // adds event listener that saves the information from form to create Book
         }
-    }
+
+    }; formOperations()
 }
