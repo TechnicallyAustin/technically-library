@@ -1,0 +1,6 @@
+body{
+    display: grid;
+    grid-template-areas:
+    "nav nav"
+    "main main";
+}
