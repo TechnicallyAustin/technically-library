@@ -20,7 +20,10 @@ function form(){
         const formOptions = {
             form: null, // new form sets this.form = form
             newForm: function(){
-                this.form = aside.appendChild(document.createElement("form"))
+                const container = aside.appendChild(document.createElement("div"));
+                container.setAttribute("class", "form-container")
+
+                this.form = container.appendChild(document.createElement("form"))
                 this.form.setAttribute("class", "new-book-form")
 
             }, // creates the form element with class new-book
@@ -32,6 +35,7 @@ function form(){
             legend: function(){
                 const legend = this.form.appendChild(document.createElement("legend"))
                 legend.setAttribute("id", "form-legend")
+                legend.setAttribute("class", "row")
                 legend.textContent = "This is a Form Legend"
             }, // title of the new book form
             inputs: function(){
@@ -51,11 +55,11 @@ function form(){
                     input.setAttribute("id", `book-${input}`)
                     input.setAttribute("class", "form-inputs");
 
-                    if (input === pages){
+                    if (input === "pages"){
                         input.setAttribute("type", "number")
                     }
 
-                    if (input === read){
+                    if (input === "read"){
                         input.setAttribute("type", "checkbox")
                     }
                 };
@@ -64,11 +68,24 @@ function form(){
             submit: function(){
                 const submit = this.form.appendChild(document.createElement("button"));
                 submit.setAttribute("class", "add-book")
-                
+
+                //submit.addEventListener("submit", )
+
 
             }, // adds event listener that saves the information from form to create Book
-            add: function(){} // adds an event listener to the button that will create the form
+            add: function(){
+                const button = document.querySelector(".new-book-btn");
+                button.addEventListener("click", function(){
+                    console.log("clicked")
+                    formOptions.newForm()
+                    formOptions.prevent()
+                    formOptions.legend()
+                    formOptions.inputs()
+                    formOptions.submit()
+                })
+            } // adds an event listener to the button that will create the form
         };
+        formOptions.add()
 
         
     }; formOperations()
