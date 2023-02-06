@@ -15,15 +15,12 @@ function form(){
     const button = document.querySelector(".form-button");
 
     function formOperations(){
-        const aside = document.querySelector("aside");
+        const formContainer = document.querySelector(".new-book-container");
 
         const formOptions = {
             form: null, // new form sets this.form = form
             newForm: function(){
-                const container = aside.appendChild(document.createElement("div"));
-                container.setAttribute("class", "form-container")
-
-                this.form = container.appendChild(document.createElement("form"))
+                this.form = formContainer.appendChild(document.createElement("form"))
                 this.form.setAttribute("class", "new-book-form")
 
             }, // creates the form element with class new-book
@@ -36,7 +33,7 @@ function form(){
                 const legend = this.form.appendChild(document.createElement("legend"))
                 legend.setAttribute("id", "form-legend")
                 legend.setAttribute("class", "row")
-                legend.textContent = "This is a Form Legend"
+                legend.textContent = "My latest page turner"
             }, // title of the new book form
             inputs: function(){
                 const inputs = ["title", "author", "pages", "read"]
@@ -49,6 +46,8 @@ function form(){
 
                     const label = fieldset.appendChild(document.createElement("label"))
                     label.setAttribute("for", `book-${input}`)
+                    label.setAttribute("class", "form-label")
+                    label.textContent = input
     
                     input = this.form.appendChild(document.createElement("input"))
                     input.setAttribute("type", "text")
@@ -57,6 +56,7 @@ function form(){
 
                     if (input === "pages"){
                         input.setAttribute("type", "number")
+                        input.setAttribute("placeholder", "395")
                     }
 
                     if (input === "read"){
@@ -66,8 +66,11 @@ function form(){
 
             },
             submit: function(){
-                const submit = this.form.appendChild(document.createElement("button"));
+                const fieldset = this.form.appendChild(document.createElement("fieldset"))
+                fieldset.setAttribute("class", "book-submit")
+                const submit = fieldset.appendChild(document.createElement("button"));
                 submit.setAttribute("class", "add-book")
+                submit.textContent = "Add Book"
 
                 //submit.addEventListener("submit", )
 
@@ -76,12 +79,17 @@ function form(){
             add: function(){
                 const button = document.querySelector(".new-book-btn");
                 button.addEventListener("click", function(){
-                    console.log("clicked")
+                    const form = document.querySelector("form")
+                    if (form === null){
+                    console.log("clicked", form)
                     formOptions.newForm()
                     formOptions.prevent()
                     formOptions.legend()
                     formOptions.inputs()
                     formOptions.submit()
+                } else {
+                    console.log("Form Exists!")
+                }
                 })
             } // adds an event listener to the button that will create the form
         };
