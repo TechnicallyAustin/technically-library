@@ -3,4 +3,5 @@ body {
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 20fr 1fr;
+    grid-template-columns: 1fr;
 }

@@ -36,7 +36,7 @@ function createLibrary() {
       button.textContent = "Add Book"
 
       const container = aside.appendChild(document.createElement("div"));
-      container.setAttribute("class", "row container-md h-50 w-75 bg-primary d-flex justify-content-center new-book-container" )
+      container.setAttribute("class", "row container h-50 w-75  bg-primary d-flex justify-content-center new-book-container" )
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));

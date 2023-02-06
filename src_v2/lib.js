@@ -21,7 +21,7 @@ function form(){
             form: null, // new form sets this.form = form
             newForm: function(){
                 this.form = formContainer.appendChild(document.createElement("form"))
-                this.form.setAttribute("class", "new-book-form")
+                this.form.setAttribute("class", "new-book-form container")
 
             }, // creates the form element with class new-book
             prevent: function(){
@@ -36,38 +36,49 @@ function form(){
                 legend.textContent = "My latest page turner"
             }, // title of the new book form
             inputs: function(){
-                const inputs = ["title", "author", "pages", "read"]
+                const inputs = ["Title", "Author", "Pages", "Read"]
 
                 for (let i = 0; i < inputs.length; i++){
                     let input = inputs[i]
-
+                    console.log(input)
+                    let value = input.toLowerCase()
+                    
                     const fieldset = this.form.appendChild(document.createElement("fieldset"));
-                    fieldset.setAttribute("class", `${input}-field`)
+                    fieldset.setAttribute("class", `${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `)
 
                     const label = fieldset.appendChild(document.createElement("label"))
-                    label.setAttribute("for", `book-${input}`)
-                    label.setAttribute("class", "form-label")
+                    label.setAttribute("for", `book-${value}`)
+                    label.setAttribute("class", "form-label align-items-start mb-0 pt-2")
                     label.textContent = input
-    
-                    input = this.form.appendChild(document.createElement("input"))
-                    input.setAttribute("type", "text")
-                    input.setAttribute("id", `book-${input}`)
-                    input.setAttribute("class", "form-inputs");
+                    
+                    input = fieldset.appendChild(document.createElement("input"))
+                    input.setAttribute("id", `book-${value}`)
+                    input.setAttribute("class", "form-inputs w-75 ");
 
-                    if (input === "pages"){
+                    if (value == "pages"){
                         input.setAttribute("type", "number")
                         input.setAttribute("placeholder", "395")
+
+                    } else if (value == "read"){
+                        console.log("READ")
+                        input.setAttribute("type", "checkbox")
+                        input.setAttribute("class", "form-inputs w-75")
+                        
+                        fieldset.setAttribute("class", `${value}-field row d-flex flex-row align-items-center justify-content-space ms-4`)
+                    } else {
+                        input.setAttribute("type", "text")
                     }
 
-                    if (input === "read"){
-                        input.setAttribute("type", "checkbox")
-                    }
-                };
+                }
+
+
+                
 
             },
             submit: function(){
                 const fieldset = this.form.appendChild(document.createElement("fieldset"))
-                fieldset.setAttribute("class", "book-submit")
+                fieldset.setAttribute("class", "book-submit d-flex justify-content-center align-items-center")
+
                 const submit = fieldset.appendChild(document.createElement("button"));
                 submit.setAttribute("class", "add-book")
                 submit.textContent = "Add Book"
@@ -81,12 +92,12 @@ function form(){
                 button.addEventListener("click", function(){
                     const form = document.querySelector("form")
                     if (form === null){
-                    console.log("clicked", form)
-                    formOptions.newForm()
-                    formOptions.prevent()
-                    formOptions.legend()
-                    formOptions.inputs()
-                    formOptions.submit()
+                        console.log("clicked", form)
+                        formOptions.newForm()
+                        formOptions.prevent()
+                        formOptions.legend()
+                        formOptions.inputs()
+                        formOptions.submit()
                 } else {
                     console.log("Form Exists!")
                 }
