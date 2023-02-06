@@ -35,8 +35,6 @@ function createLibrary() {
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
       section.setAttribute("class", "col-8 h-75 bg-light shelf");
-
-
       this.section = section;
     }, // creates a section with class shelf
     article: function () {}, // create an aritcle per Book with class book
