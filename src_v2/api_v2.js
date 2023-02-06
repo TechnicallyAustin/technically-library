@@ -11,7 +11,7 @@ function createLibrary() {
     navbar: function () {
       const nav = this.head.appendChild(document.createElement("navbar"));
       const text = nav.appendChild(document.createElement("p"));
-      text.textContent = "Teechnically Library";
+      text.textContent = "Technically Library";
     }, // creates nav Bar and Nav elements
   };
   headerElements.header();
@@ -26,10 +26,10 @@ function createLibrary() {
     }, // creates the main with class Library
     aside: function () {
       const aside = this.main.appendChild(document.createElement("aside"));
-      aside.setAttribute("class", "col-4 h-25  bg-secondary aside d-flex justify-content-center align-items-center")
+      aside.setAttribute("class", "col-4 h-75  bg-secondary aside d-flex justify-content-center align-items-start")
 
       const button = aside.appendChild(document.createElement("button"));
-      button.setAttribute("class", "btn-primary w-75")
+      button.setAttribute("class", "new-book-btn btn-primary w-75")
       button.textContent = "Add Book"
     }, //  defines Form and form creation button
     section: function () {
