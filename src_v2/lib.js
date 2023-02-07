@@ -48,12 +48,13 @@ function form(){
 
                     const label = fieldset.appendChild(document.createElement("label"))
                     label.setAttribute("for", `book-${value}`)
-                    label.setAttribute("class", "form-label align-items-start mb-0 pt-2")
+                    label.setAttribute("class", "form-label align-items-start mb-0 p-2")
                     label.textContent = input
                     
                     input = fieldset.appendChild(document.createElement("input"))
                     input.setAttribute("id", `book-${value}`)
                     input.setAttribute("class", "form-inputs w-75 ");
+                    input.setAttribute("placeholder", `${value}` )
 
                     if (value == "pages"){
                         input.setAttribute("type", "number")
@@ -62,18 +63,13 @@ function form(){
                     } else if (value == "read"){
                         console.log("READ")
                         input.setAttribute("type", "checkbox")
-                        input.setAttribute("class", "form-inputs w-75")
+                        input.setAttribute("class", "form-inputs")
                         
-                        fieldset.setAttribute("class", `${value}-field row d-flex flex-row align-items-center justify-content-space ms-4`)
+                        fieldset.setAttribute("class", `${value}-field row d-flex align-items-center justify-content-space ms-4 p-2 text-center`)
                     } else {
                         input.setAttribute("type", "text")
                     }
-
                 }
-
-
-                
-
             },
             submit: function(){
                 const fieldset = this.form.appendChild(document.createElement("fieldset"))
@@ -83,7 +79,10 @@ function form(){
                 submit.setAttribute("class", "add-book")
                 submit.textContent = "Add Book"
 
-                //submit.addEventListener("submit", )
+                submit.addEventListener("click", () => {
+                    bookOperations()
+                    console.log("form submitted")
+                })
 
 
             }, // adds event listener that saves the information from form to create Book
@@ -106,6 +105,7 @@ function form(){
         };
         formOptions.add()
 
+
         
     }; formOperations()
 }; form()
@@ -115,13 +115,52 @@ function bookOperations(){
     const myLibrary = [];
     const library = document.querySelector(".library");
 
+    console.log("bookOps()")
+
+    const formInputs = {
+        title: function(){
+            const title = document.querySelector("#book-title")
+            return title.value
+        },
+        author: function(){
+            const author = document.querySelector("#book-author")
+            return author.value
+        },
+        pages: function(){
+            const pages = document.querySelector("#book-pages")
+            return pages.value
+        },
+        read: function(){
+            const read = document.querySelector("#book-read");
+            return read.value
+        }
+    }
+
+
+
     const options = {
-        new: function(){}, // given Form input creates a Book Object
-        save: function(){}, // after a Book has been created, adds to Library
+        new: function(){
+            console.log(formInputs.title())
+            const book = new Book(
+              formInputs.title(),
+              formInputs.author(),
+              formInputs.pages(),
+              formInputs.read()
+              );
+
+              return book
+
+        }, // given Form input creates a Book Object
+        save: function(){
+            console.log(this.new())
+            myLibrary.push(this.new())
+            console.log(myLibrary[0])
+        }, // after a Book has been created, adds to Library
         dom: function(){}, //  create a Dom Book Element from a Book Obj
         remove: function(){}, // remove the Book from the library and the DOM
         library: function(){} // create the library of books using bookOptions.dom
     };
+    options.save()
 
 
 }; bookOperations()
