@@ -23,7 +23,7 @@ function form() {
       form: null, // new form sets this.form = form
       newForm: function () {
         this.form = formContainer.appendChild(document.createElement("form"));
-        this.form.setAttribute("class", "new-book-form container");
+        this.form.setAttribute("class", "new-book-form");
       }, // creates the form element with class new-book
       prevent: function () {
         this.form.addEventListener("submit", function (event) {
@@ -54,12 +54,12 @@ function form() {
 
           const label = fieldset.appendChild(document.createElement("label"));
           label.setAttribute("for", `book-${value}`);
-          label.setAttribute("class", "form-label align-items-start mb-0 p-2");
+          label.setAttribute("class", "form-label align-items-start mb-0 pt-2");
           label.textContent = input;
 
           input = fieldset.appendChild(document.createElement("input"));
           input.setAttribute("id", `book-${value}`);
-          input.setAttribute("class", "form-inputs w-75 ");
+          input.setAttribute("class", "form-inputs w-75 ms-6");
           input.setAttribute("placeholder", `${value}`);
 
           if (value == "pages") {
@@ -68,12 +68,18 @@ function form() {
           } else if (value == "read") {
             console.log("READ");
             input.setAttribute("type", "checkbox");
-            input.setAttribute("class", "form-inputs");
+            input.setAttribute("class", "form-inputs  align-self-center mt-0");
 
-            fieldset.setAttribute(
-              "class",
-              `${value}-field row d-flex align-items-center justify-content-space ms-4 p-2 text-center`
-            );
+               fieldset.setAttribute(
+                 "class",
+                 `${value}-field row d-flex  align-items-center justify-content-space p-2 `
+               );
+               label.setAttribute(
+                 "class",
+                 "form-label align-items-start mb-0 p-2"
+               );
+
+
           } else {
             input.setAttribute("type", "text");
           }

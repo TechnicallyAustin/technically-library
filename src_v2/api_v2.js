@@ -26,17 +26,17 @@ function createLibrary() {
     }, // creates the main with class Library
     aside: function () {
       const aside = this.main.appendChild(document.createElement("aside"));
-      aside.setAttribute("class", "container-fluid col-4 h-75 d-flex flex-column justify-content-around align-items-center  bg-secondary aside")
+      aside.setAttribute("class", "col-4 h-75 d-flex flex-column justify-content-around align-items-center  bg-secondary aside")
 
       const btnContainer = aside.appendChild(document.createElement("div"))
-      btnContainer.setAttribute("class", "row container-fluid btn-container d-flex justify-content-center");
+      btnContainer.setAttribute("class", " row btn-container d-flex justify-content-center");
 
       const button = btnContainer.appendChild(document.createElement("button"));
-      button.setAttribute("class", "col-8 new-book-btn btn-primary")
+      button.setAttribute("class", "col new-book-btn btn-primary")
       button.textContent = "Add Book"
 
       const container = aside.appendChild(document.createElement("div"));
-      container.setAttribute("class", "row container h-50 w-75  bg-primary d-flex justify-content-center new-book-container" )
+      container.setAttribute("class", "row h-50 w-75  bg-primary d-flex justify-content-center new-book-container" )
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
