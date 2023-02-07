@@ -180,7 +180,7 @@ function bookOperations() {
 
 
         let card = shelf.appendChild(document.createElement("article"));
-        card.setAttribute("class", `card ${book.title()} ${i}`);
+        card.setAttribute("class", `card ${book.title()} ${i} col-2`);
 
         let cardHeader = card.appendChild(document.createElement("div"));
         cardHeader.setAttribute("class", `book-title card-header`);
