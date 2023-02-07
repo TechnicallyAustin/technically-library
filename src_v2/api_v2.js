@@ -5,7 +5,7 @@ function createLibrary() {
   const headerElements = {
     header: function () {
       const head = document.body.appendChild(document.createElement("header"));
-      head.setAttribute("class", "container-fluid header bg-dark text-white ");
+      head.setAttribute("class", "container-fluid header bg-info text-white ");
       this.head = head;
     }, // creates header container
     navbar: function () {
@@ -40,7 +40,7 @@ function createLibrary() {
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
-      section.setAttribute("class", "col-8 h-75 bg-light shelf");
+      section.setAttribute("class", "col-8 h-75 bg-dark shelf");
       this.section = section;
     }, // creates a section with class shelf
     article: function () {}, // create an aritcle per Book with class book
@@ -53,7 +53,7 @@ function createLibrary() {
   const footerElements = {
     footer: function () {
       const footer = document.body.appendChild(document.createElement("footer"));
-      footer.setAttribute("class", "footer bg-dark text-white");
+      footer.setAttribute("class", "footer bg-info text-white");
       this.footer = footer;
     }, // creates the footer element
     info: function () {
