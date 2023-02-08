@@ -21,7 +21,7 @@ function createLibrary() {
   const mainElements = {
     main: function () {
       const main = document.body.appendChild(document.createElement("main"));
-      main.setAttribute("class", "container-xl row bg-primary d-flex justify-content-center library ");
+      main.setAttribute("class", "row row-cols-2 bg-primary d-flex justify-content-center library ");
       this.main = main;
     }, // creates the main with class Library
     aside: function () {
@@ -40,10 +40,9 @@ function createLibrary() {
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
-      section.setAttribute("class", "col-8 d-flex flex-column flex-wrap h-75 bg-dark shelf");
+      section.setAttribute("class", "col-8 row-cols-4 d-flex overflow-scroll flex-wrap  bg-dark shelf p-4");
       this.section = section;
-    }, // creates a section with class shelf
-    article: function () {}, // create an aritcle per Book with class book
+    } // creates a section with class shelf
   };
   mainElements.main();
   mainElements.aside();
