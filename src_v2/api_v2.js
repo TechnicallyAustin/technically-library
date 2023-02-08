@@ -40,7 +40,7 @@ function createLibrary() {
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
-      section.setAttribute("class", "col-8 h-75 bg-dark shelf");
+      section.setAttribute("class", "col-8 d-flex flex-column flex-wrap h-75 bg-dark shelf");
       this.section = section;
     }, // creates a section with class shelf
     article: function () {}, // create an aritcle per Book with class book

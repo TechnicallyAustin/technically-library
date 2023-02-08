@@ -201,7 +201,7 @@ function bookOperations() {
         cardFooter.setAttribute("class", "book-footer card-footer");
 
         let pages = cardFooter.appendChild(document.createElement("p"));
-        pages.textContent = book.pages();
+        pages.textContent = `pages: ${book.pages()}`;
 
         let read = cardFooter.appendChild(document.createElement("p"));
         read.textContent = book.read();
