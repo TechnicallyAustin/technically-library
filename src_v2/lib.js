@@ -5,8 +5,7 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
-
-// Prototype Methods
+// Book Prototype Methods
 Book.prototype.info = function () {
   console.log(this.title);
 };
@@ -68,7 +67,7 @@ function form() {
           } else if (value == "read") {
             console.log("READ");
             input.setAttribute("type", "checkbox");
-            input.setAttribute("class", "form-inputs  align-self-center mt-0");
+            input.setAttribute("class", "form-inputs  align-self-center mt-0")
 
             fieldset.setAttribute(
               "class",
@@ -170,52 +169,60 @@ function bookOperations() {
 
         let book = myLibrary[i];
         if (myLibrary !== []) {
+            // define this object higher up the scope and reference it in the options.Options
           const cardOptions = {
             card: null,
             newCard: function(){
                 const newCard = shelf.appendChild(document.createElement("article"));
-                card.setAttribute("class",`card col-3 h-25 w-25 flex-shrink-1 ${book.title()} ${i}`);
-                this.card =  newCardconst
+                newCard.setAttribute("class",`card col-3 h-25 w-25 flex-shrink-1 ${book.title()} ${i}`);
+                this.card =  newCard
             },
             header: function(){
-                const cardHeader = card.appendChild(document.createElement("div"));
+                const cardHeader = this.card.appendChild(document.createElement("div"));
                 cardHeader.setAttribute("class", `book-title card-header`);
                 cardHeader.textContent = book.title();
             },
             body: function(){
-                const cardBody = card.appendChild(document.createElement("div"));
+                const cardBody = this.card.appendChild(document.createElement("div"));
                 cardBody.setAttribute("class", "card-body");
+                this.body = cardBody
             },
             title: function(){
-                const cardTitle = cardBody.appendChild(document.createElement("h5"));
+                const cardTitle = this.body.appendChild(document.createElement("h5"));
                 cardTitle.setAttribute("class", "title card-title");
                 cardTitle.textContent = book.title();
 
             },
             text: function(){
-                const cardText = cardBody.appendChild(document.createElement("p"));
+                const cardText = this.body.appendChild(document.createElement("p"));
                 cardText.setAttribute("class", " author card-text");
                 cardText.textContent = book.author();
             },
             footer: function(){
-                const cardFooter = card.appendChild(document.createElement("div"));
-                cardFooter.setAttribute("class", "book-footer card-footer");
+                const cardFooter = this.card.appendChild(document.createElement("div"));
+                cardFooter.setAttribute("class", "book-footer card-footer d-flex flex-column");
+                this.footer = cardFooter
+                console.log(this.footer)
             },
             pages: function(){
-                const pages = cardFooter.appendChild(document.createElement("p"));
+                const pages = this.footer.appendChild(document.createElement("p"));
                 pages.textContent = `pages: ${book.pages()}`;
             },
             read: function(){
-                const read = cardFooter.appendChild(document.createElement("p"));
+                const read = this.footer.appendChild(document.createElement("p"));
                 console.log(book.read())
-                    if (book.read() === "on") {
-                       read.textContent = "Read";
-                    } else {
-                       read.textContent = "Not Read";
-                    }
             },
             remove: function(){} // adds a remove function button and logic to each div
           }
+          cardOptions.newCard()
+          cardOptions.header()
+          cardOptions.body()
+          cardOptions.title()
+          cardOptions.text()
+          cardOptions.footer()
+          cardOptions.pages()
+          cardOptions.read()
+          cardOptions.remove()
         
         }
       }
@@ -228,3 +235,17 @@ function bookOperations() {
   options.dom();
 
 }
+// Book constructor
+    // Books
+        // bookOperations(){}
+
+
+// form constructor
+    // form
+        // inputs
+        // submit
+        
+
+// card constructor w/ book properties
+    // card
+        // 
