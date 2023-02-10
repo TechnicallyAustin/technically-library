@@ -235,17 +235,3 @@ function bookOperations() {
   options.dom();
 
 }
-// Book constructor
-    // Books
-        // bookOperations(){}
-
-
-// form constructor
-    // form
-        // inputs
-        // submit
-        
-
-// card constructor w/ book properties
-    // card
-        // 
