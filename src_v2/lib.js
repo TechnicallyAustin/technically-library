@@ -43,13 +43,8 @@ function form() {
           console.log(input);
           let value = input.toLowerCase();
 
-          const fieldset = this.form.appendChild(
-            document.createElement("fieldset")
-          );
-          fieldset.setAttribute(
-            "class",
-            `${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `
-          );
+          const fieldset = this.form.appendChild(document.createElement("fieldset"));
+          fieldset.setAttribute("class",`${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `);
 
           const label = fieldset.appendChild(document.createElement("label"));
           label.setAttribute("for", `book-${value}`);
