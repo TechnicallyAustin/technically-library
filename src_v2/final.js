@@ -40,10 +40,25 @@ const cards = {
         const text = this.body.appendChild(document.createElement("p"))
         text.setAttribute("class", "card-text") 
     },
-    footer: function(){},
-    pages: function(){},
-    read: function(){},
-    remove: function(){}
+    footer: function(){
+        const footer = this.card.appendChild(document.createElement("div"))
+        footer.setAttribute("class", "card-footer")
+        this.footer = footer
+    },
+    pages: function(){
+        const pages = this.footer.appendChild(document.createElement("p"))
+        pages.setAttribute("class", "pages")
+    },
+    read: function(){
+        const read = this.footer.appendChild(document.createElement("p");
+        read.setAttribute("class", "read")
+    },
+    remove: function(){
+        const remove = this.footer.appendChild(document.createElement("button"))
+        remove.
+        remove.setAttribute("id", "remove-book")
+        remove.setAttribute("value", "remove")
+    }
 }
 
 const form = {
