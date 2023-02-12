@@ -24,7 +24,6 @@ const library = {
 function cardData(){
 // Card Variables
 
-
     // Card Object
     const cards = {
         card: null,
@@ -117,6 +116,8 @@ function formData(){
         inputs: function(){
             const inputs = ["Title", "Author", "Pages", "Read"]
             for (let i = 0; i < inputs.length; i++){
+                let value = inputs[i]
+
                 function fieldset(){
                     const fieldset = this.form.appendChild(document.createElement("fieldset"));
                     fieldset.setAttribute("class",`${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `);
@@ -132,6 +133,15 @@ function formData(){
                     input.setAttribute("id", `book-${value}`);
                     input.setAttribute("class", "form-inputs w-75 ms-6");
                     input.setAttribute("placeholder", `${value}`);
+                }
+
+                if (value === "Read"){
+                    function fieldset(){}
+                    function label(){}
+                    function input(){}
+                } else if (value === "Pages"){
+                    function label(){}
+                    function input(){}
                 }
             }
         },
@@ -154,5 +164,23 @@ function formData(){
             this.submit()
         }
     }; form.create()
+
+}
+
+
+function populate(){
+    // create a function that referneces each  object to...
+
+        // retrieve form input 
+            // store form input as an object
+
+        // create a Book Object using form input
+            // save book object to library
+        
+        // Iterate Library and create DOM Cards for each book in the library.
+
+
+    //  Consider changing the card into a constructor and initialize the New Card object with form inputs as arguments
+    // Form --> Library --> Card
 
 }
