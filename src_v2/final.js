@@ -20,6 +20,13 @@ const library = {
     }
 }
 
+function Card(title, author, pages, read){
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
+}
+
 // Card Data
 function cardData(){
 // Card Variables
