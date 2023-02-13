@@ -1,4 +1,3 @@
-
 // Library Object
 const library = {
     books: [],
@@ -39,7 +38,13 @@ function bookOperations(){
         },
         read: function(){
             const read = document.querySelector("#book-read").value
-            return read        
+            if (document.querySelector("#book-read").checked) {
+                let readStatus = "Read"
+                return readStatus
+            } else {
+                let readStatus = "Unread"
+                return readStatus
+            }
         }
     }
     function addtoLibrary(book){
@@ -53,85 +58,78 @@ function bookOperations(){
     }; createBook()
 };
 
-
-function Card(title, author, pages, read){
-    this.title = function(){}
-    this.author = function(){}
-    this.pages = function(){}
-    this.read = function(){}
-}
 // Card Data
 function cardOperations(){
-// Card Variables
 
-    // Card Object
-    const cards = {
-        card: null,
-        newCard: function(){
-            const section = document.querySelector(".shelf")
-            const newCard = section.appendChild(document.createElement("article"))
-            newCard.setAttribute("class", "card")
-            this.card = newCard 
-        },
-        header: function(){
-            const header = this.card.appendChild(document.createElement("div"))
-            header.setAttribute("class", "card-header")
-        },
-        body: function(){
-            const body = this.card.appendChild(document.createElement("div"));
-            body.setAttribute("class", "card-body")
-            this.body = body
-        },
-        title: function(){
-            const title = this.body.appendChild(document.createElement("h5"));
-            title.setAttribute("class", "card-title")
-
-        },
-        text: function(){
-            const text = this.body.appendChild(document.createElement("p"))
-            text.setAttribute("class", "card-text") 
-        },
-        footer: function(){
-            const footer = this.card.appendChild(document.createElement("div"))
-            footer.setAttribute("class", "card-footer")
-            this.footer = footer
-        },
-        pages: function(){
-            const pages = this.footer.appendChild(document.createElement("p"))
-            pages.setAttribute("class", "pages")
-        },
-        read: function(){
-            const read = this.footer.appendChild(document.createElement("p"));
-            read.setAttribute("class", "read")
-        },
-        remove: function(){
-            const remove = this.footer.appendChild(document.createElement("button"))
-            remove.setAttribute("id", "remove-book")
-            remove.setAttribute("value", "Remove")
-        },
-        create: function(){
-            this.newCard()
-            this.header()
-            this.body()
-            this.title()
-            this.text()
-            this.footer()
-            this.pages()
-            this.read()
-            this.remove()
-        },
-        createCards: function(){
-            const books = library.books
-            for (let i = 0; i < books.length; i++){
-                let book = books[i]
-
+function createCards(){
+    const shelf = document.querySelector(".shelf")
+    for (let i = 0; i < library.books.length; i++){
+        let book = library.books[i]
+        // Card Object
+        const cards = {
+            card: null,
+            newCard: function(){
+                const section = document.querySelector(".shelf")
+                const newCard = section.appendChild(document.createElement("article"))
+                newCard.setAttribute("class", `card ${book.title()}`)
+                this.card = newCard 
+            },
+            header: function(){
+                const header = this.card.appendChild(document.createElement("div"))
+                header.setAttribute("class", "card-header")
+                header.textContent = book.title()
+            },
+            body: function(){
+                const body = this.card.appendChild(document.createElement("div"));
+                body.setAttribute("class", "card-body")
+                this.body = body
+            },
+            title: function(){
+                const title = this.body.appendChild(document.createElement("h5"));
+                title.setAttribute("class", "card-title")
+                title.textContent = book.title()
+            },
+            text: function(){
+                const text = this.body.appendChild(document.createElement("p"))
+                text.setAttribute("class", "card-text")
+                text.textContent = book.author()
+            },
+            footer: function(){
+                const footer = this.card.appendChild(document.createElement("div"))
+                footer.setAttribute("class", "card-footer")
+                this.footer = footer
+            },
+            pages: function(){
+                const pages = this.footer.appendChild(document.createElement("p"))
+                pages.setAttribute("class", "pages")
+                pages.textContent =  `# of Pages ${book.pages()}`
+            },
+            read: function(){
+                const read = this.footer.appendChild(document.createElement("p"));
+                read.setAttribute("class", "read")
+                read.textContent = book.read()
+            },
+            remove: function(){
+                const remove = this.footer.appendChild(document.createElement("button"))
+                remove.setAttribute("id", "remove-book")
+                remove.setAttribute("value", "Remove")
+                remove.textContent = "Remove"
+            },
+            create: function(){
+                this.newCard()
+                this.header()
+                this.body()
+                this.title()
+                this.text()
+                this.footer()
+                this.pages()
+                this.read()
+                this.remove()
             }
-        }
-    }; 
-
-    function createCards(){
-        
+        }; 
+        cards.create()
     }
+}; createCards()
 
 }
 
@@ -171,14 +169,14 @@ function formOperations(){
                         field.setAttribute("class",`${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `);
                         this.fieldset = field
 
-                        if (value === "Read"){
+                        if (value === "read"){
                             let field = form.appendChild(document.createElement("fieldset"));
                             field.setAttribute("class",`${value}-field row d-flex  align-items-center justify-content-space p-2 `);
                             this.fieldset = field
                         }
                     },
                     label: function(){
-                        if (value === "Pages"){
+                        if (value === "pages"){
                             label = this.fieldset.appendChild(document.createElement("label"))
                             label.setAttribute("for", `book-${value}`);
                             label.setAttribute("class", "form-label align-items-start mb-0 pt-2");
@@ -197,10 +195,11 @@ function formOperations(){
                         input.setAttribute("class", "form-inputs w-75 ms-6");
                         input.setAttribute("placeholder", `${value}`);
 
-                        if (value === "Read"){
+                        if (value === "read"){
                             input.setAttribute("type", "checkbox");
                             input.setAttribute("class", "form-inputs  align-self-center mt-0")
-                        } else if (value === "Pages"){
+
+                        } else if (value === "pages"){
                             input.setAttribute("type", "number")
                             input.setAttribute("placeholder", "395")
                         }
@@ -222,6 +221,7 @@ function formOperations(){
             submit.addEventListener("click", () => {
                 console.log("form submitted")
                 bookOperations()
+                cardOperations()
 
             })
         },
