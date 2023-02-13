@@ -159,6 +159,8 @@ function formOperations() {
     prevent: function () {
       this.form.addEventListener("submit", function (event) {
         event.preventDefault();
+        bookOperations()
+        cardOperations()
       });
     },
     legend: function () {
@@ -218,21 +220,23 @@ function formOperations() {
             let input = this.fieldset.appendChild(
               document.createElement("input")
             );
-            input.setAttribute("type", "text");
-            input.setAttribute("id", `book-${value}`);
-            input.setAttribute("class", "form-inputs w-75 ms-6");
-            input.setAttribute("placeholder", `${value}`);
-            input.setAttribute("required", "")
-
+            
             if (value === "read") {
-              input.setAttribute("type", "checkbox");
-              input.setAttribute(
-                "class",
-                "form-inputs  align-self-center mt-0"
-              );
-            } else if (value === "pages") {
-              input.setAttribute("type", "number");
-              input.setAttribute("placeholder", "395");
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("class","form-inputs  align-self-center mt-0");
+                input.setAttribute("id", `book-${value}`);
+
+                } else if (value === "pages") {
+                    input.setAttribute("type", "number");
+                    input.setAttribute("placeholder", "395");
+                    input.setAttribute("id", `book-${value}`);
+                    input.setAttribute("required", "")
+                } else {
+                    input.setAttribute("type", "text");
+                    input.setAttribute("id", `book-${value}`);
+                    input.setAttribute("class", "form-inputs w-75 ms-6");
+                    input.setAttribute("placeholder", `${value}`);
+                    input.setAttribute("required", "")
             }
           },
         };
@@ -247,12 +251,6 @@ function formOperations() {
       submit.setAttribute("class", "submit-book");
       submit.setAttribute("value", "Add Book");
       submit.textContent = "Add Book";
-
-      submit.addEventListener("submit", () => {
-        console.log("form submitted");
-        bookOperations();
-        cardOperations();
-      });
     },
     create: function () {
         if (this.form === null){
