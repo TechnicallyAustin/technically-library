@@ -21,14 +21,14 @@ const library = {
 }
 
 function Card(title, author, pages, read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+    this.title = function(){}
+    this.author = function(){}
+    this.pages = function(){}
+    this.read = function(){}
 }
 
 // Card Data
-function cardData(){
+function cardOperations(){
 // Card Variables
 
     // Card Object
@@ -99,8 +99,11 @@ function cardData(){
 }
 
 // Form Data
-function formData(){
-// Form Variables
+function formOperations(){
+    const newButton = document.querySelector(".new-book-btn")
+
+
+    function submitForm(){}
 
     // Form Object
     const form = {
@@ -119,37 +122,62 @@ function formData(){
         legend: function(){
             const legend = this.form.appendChild(document.createElement("legend"))
             legend.setAttribute("class", "legend")
+            legend.textContent = "Read anything fun?"
         },
         inputs: function(){
+            const form = this.form
             const inputs = ["Title", "Author", "Pages", "Read"]
             for (let i = 0; i < inputs.length; i++){
                 let value = inputs[i]
 
-                function fieldset(){
-                    const fieldset = this.form.appendChild(document.createElement("fieldset"));
-                    fieldset.setAttribute("class",`${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `);
-                }
-                function label(){
-                    const label = fieldset.appendChild(document.createElement("label"));
-                    label.setAttribute("for", `book-${value}`);
-                    label.setAttribute("class", "form-label align-items-start mb-0 pt-2");
-                    label.textContent = input;
-                }; label()
-                function input(){
-                    input = fieldset.appendChild(document.createElement("input"));
-                    input.setAttribute("id", `book-${value}`);
-                    input.setAttribute("class", "form-inputs w-75 ms-6");
-                    input.setAttribute("placeholder", `${value}`);
-                }
+                const formFields = {
+                    fieldset: null,
+                    newField: function(){
+                        let field = form.appendChild(document.createElement("fieldset"));
+                        field.setAttribute("class",`${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `);
+                        this.fieldset = field
 
-                if (value === "Read"){
-                    function fieldset(){}
-                    function label(){}
-                    function input(){}
-                } else if (value === "Pages"){
-                    function label(){}
-                    function input(){}
-                }
+                        if (value === "Read"){
+                            let field = form.appendChild(document.createElement("fieldset"));
+                            field.setAttribute("class",`${value}-field row d-flex  align-items-center justify-content-space p-2 `);
+                            this.fieldset = field
+                        }
+                    },
+                    label: function(){
+                        console.log(this)
+                        
+                        if (value === "Pages"){
+                            label = this.fieldset.appendChild(document.createElement("label"))
+                            label.setAttribute("for", `book-${value}`);
+                            label.setAttribute("class", "form-label align-items-start mb-0 pt-2");
+                            label.textContent = "# of Pages"
+                        } else {
+                            let label = this.fieldset.appendChild(document.createElement("label"))
+                            label.setAttribute("for", `book-${value}`);
+                            label.setAttribute("class", "form-label align-items-start mb-0 pt-2");
+                            label.textContent = value;
+                        }
+                    },
+                    inputs: function(){
+                        let input = this.fieldset.appendChild(document.createElement("input"));
+                        input.setAttribute("type", "text")
+                        input.setAttribute("id", `book-${value}`);
+                        input.setAttribute("class", "form-inputs w-75 ms-6");
+                        input.setAttribute("placeholder", `${value}`);
+
+                        if (value === "Read"){
+                            input.setAttribute("type", "checkbox");
+                            input.setAttribute("class", "form-inputs  align-self-center mt-0")
+                        } else if (value === "Pages"){
+                            input.setAttribute("type", "number")
+                            input.setAttribute("placeholder", "395")
+                        }
+                    },
+
+                };
+                formFields.newField()
+                formFields.label()
+                formFields.inputs()
             }
         },
         submit: function(){
@@ -157,10 +185,12 @@ function formData(){
             submit.setAttribute("id", "submit-book")
             submit.setAttribute("class", "submit-book")
             submit.setAttribute("value", "Add Book")
+            submit.textContent = "Add Book"
 
             submit.addEventListener("click", () => {
                 console.log("form submitted")
-                console.log("Create Book -> Save Book To Lib --> Create Lib Book Cards")
+                submitForm()
+
             })
         },
         create: function(){
@@ -170,9 +200,15 @@ function formData(){
             this.inputs()
             this.submit()
         }
-    }; form.create()
+    };
 
-}
+
+    newButton.addEventListener("click", () => {
+        console.log("click")
+        form.create()
+    })
+
+}; formOperations()
 
 
 function populate(){
