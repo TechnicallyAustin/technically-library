@@ -37,11 +37,12 @@ function createLibrary() {
       button.textContent = "Add Book"
 
       const container = aside.appendChild(document.createElement("div"));
-      container.setAttribute("class", "row h-50 w-75  bg-primary d-flex justify-content-center align-items-center new-book-container" )
+      container.setAttribute(
+        "class","new-book-container row h-50 w-75  bg-primary d-flex justify-content-center align-items-center");
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
-      section.setAttribute("class", "col-8 row vh-75 mh-75 overflow-auto bg-dark shelf p-4");
+      section.setAttribute("class", "shelf col-8 row vh-75 mh-75 justify-content-center align-content-start overflow-auto bg-dark p-4 gap-2");
       this.section = section;
     } // creates a section with class shelf
   };

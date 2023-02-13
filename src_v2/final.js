@@ -6,7 +6,9 @@ const library = {
     return this.books;
   },
   removeBook: function (book) {
+    console.log("Books pre", this.books);
     this.books.splice(this.books.indexOf(book), 1);
+    console.log("Books", this.books);
     return this.books;
   },
 };
@@ -70,7 +72,7 @@ function cardOperations() {
             const newCard = section.appendChild(
               document.createElement("article")
             );
-            newCard.setAttribute("class", `card ${book.title}`);
+            newCard.setAttribute("class", `card ${book.title} align-self-center`);
             this.card = newCard;
           },
           header: function () {
@@ -116,22 +118,21 @@ function cardOperations() {
             remove.setAttribute("value", "Remove");
             remove.textContent = "Remove";
             remove.addEventListener("click", ()=>{
-                library.removeBook(this)
-                console.log("remove")
-                console.log(this)
+                library.removeBook(this) // removes book
+                shelf.removeChild(this.card) // removes card
             })
           },
           create: function () {
-            this.newCard();
-            this.header();
-            this.body();
-            this.title();
-            this.text();
-            this.footer();
-            this.pages();
-            this.read();
-            this.remove();
-          },
+                this.newCard();
+                this.header();
+                this.body();
+                this.title();
+                this.text();
+                this.footer();
+                this.pages();
+                this.read();
+                this.remove();
+            },
         };
         cards.create();
       } else {
@@ -221,6 +222,7 @@ function formOperations() {
             input.setAttribute("id", `book-${value}`);
             input.setAttribute("class", "form-inputs w-75 ms-6");
             input.setAttribute("placeholder", `${value}`);
+            input.setAttribute("required", "")
 
             if (value === "read") {
               input.setAttribute("type", "checkbox");
@@ -246,18 +248,20 @@ function formOperations() {
       submit.setAttribute("value", "Add Book");
       submit.textContent = "Add Book";
 
-      submit.addEventListener("click", () => {
+      submit.addEventListener("submit", () => {
         console.log("form submitted");
         bookOperations();
         cardOperations();
       });
     },
     create: function () {
-      this.newForm();
-      this.prevent();
-      this.legend();
-      this.inputs();
-      this.submit();
+        if (this.form === null){
+            this.newForm();
+            this.prevent();
+            this.legend();
+            this.inputs();
+            this.submit();
+        } else {console.log("Form exists")}
     },
   };
 
@@ -325,15 +329,15 @@ function formOperations() {
              remove.textContent = "Remove";
            },
            create: function () {
-             this.newCard();
-             this.header();
-             this.body();
-             this.title();
-             this.text();
-             this.footer();
-             this.pages();
-             this.read();
-             this.remove();
+            this.newCard();
+            this.header();
+            this.body();
+            this.title();
+            this.text();
+            this.footer();
+            this.pages();
+            this.read();
+            this.remove();
            },
          };
          cards.create();
