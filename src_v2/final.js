@@ -115,6 +115,11 @@ function cardOperations() {
             remove.setAttribute("id", "remove-book");
             remove.setAttribute("value", "Remove");
             remove.textContent = "Remove";
+            remove.addEventListener("click", ()=>{
+                library.removeBook(this)
+                console.log("remove")
+                console.log(this)
+            })
           },
           create: function () {
             this.newCard();
