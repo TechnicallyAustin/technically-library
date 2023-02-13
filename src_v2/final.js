@@ -1,3 +1,18 @@
+
+// Library Object
+const library = {
+    books: [],
+    addBook: function(book){
+
+        const add = this.lib.push(book)
+        this.books = add
+    },
+    removeBook: function(book){
+        const remove = this.lib.pop(book)
+        this.books = remove
+    } 
+} 
+
 // Book constructor
 function Book(title, author, pages, read) {
   this.title = title;
@@ -8,17 +23,29 @@ function Book(title, author, pages, read) {
 Book.prototype.info = function () {};
 Book.prototype.id = function () {};
 
-// Library Object
-const library = {
-    books: [],
-    addBook: function(book){
-
-        this.lib.push(book)
-    },
-    removeBook: function(){
-        this.lib.pop(book)
+function bookOperations(){
+    const formInputs = {
+        title: function(){
+            const title = document.querySelector("#book-title")
+            console.log(title)},
+        author: function(){document.querySelector("#book-author")},
+        pages: function(){document.querySelector("#book-pages")},
+        read: function(){document.querySelector("#book-read")}
     }
-}
+    function addtoLibrary(book){
+        library.add(book)
+        console.log(library)
+    }
+    
+    function createBook(){
+        console.log(document.querySelector("#book-title").value);
+        console.log("book ops")
+
+        //const book = new Book(formInputs.title.value, formInputs.author.value, formInputs.pages.value, formInputs.read.value)
+        //addtoLibrary(book)
+    }; createBook()
+};
+
 
 function Card(title, author, pages, read){
     this.title = function(){}
@@ -26,7 +53,6 @@ function Card(title, author, pages, read){
     this.pages = function(){}
     this.read = function(){}
 }
-
 // Card Data
 function cardOperations(){
 // Card Variables
@@ -87,7 +113,7 @@ function cardOperations(){
             this.read()
             this.remove()
         },
-        createBooks: function(){
+        createCards: function(){
             const books = library.books
             for (let i = 0; i < books.length; i++){
                 let book = books[i]
@@ -101,9 +127,6 @@ function cardOperations(){
 // Form Data
 function formOperations(){
     const newButton = document.querySelector(".new-book-btn")
-
-
-    function submitForm(){}
 
     // Form Object
     const form = {
@@ -128,7 +151,7 @@ function formOperations(){
             const form = this.form
             const inputs = ["Title", "Author", "Pages", "Read"]
             for (let i = 0; i < inputs.length; i++){
-                let value = inputs[i]
+                let value = inputs[i].toLowerCase()
 
                 const formFields = {
                     fieldset: null,
@@ -144,8 +167,6 @@ function formOperations(){
                         }
                     },
                     label: function(){
-                        console.log(this)
-                        
                         if (value === "Pages"){
                             label = this.fieldset.appendChild(document.createElement("label"))
                             label.setAttribute("for", `book-${value}`);
@@ -189,7 +210,7 @@ function formOperations(){
 
             submit.addEventListener("click", () => {
                 console.log("form submitted")
-                submitForm()
+                bookOperations()
 
             })
         },
@@ -202,7 +223,6 @@ function formOperations(){
         }
     };
 
-
     newButton.addEventListener("click", () => {
         console.log("click")
         form.create()
@@ -212,6 +232,7 @@ function formOperations(){
 
 
 function populate(){
+
     // create a function that referneces each  object to...
 
         // retrieve form input 
