@@ -26,23 +26,30 @@ Book.prototype.id = function () {};
 function bookOperations(){
     const formInputs = {
         title: function(){
-            const title = document.querySelector("#book-title")
-            console.log(title)},
-        author: function(){document.querySelector("#book-author")},
-        pages: function(){document.querySelector("#book-pages")},
-        read: function(){document.querySelector("#book-read")}
+            const title = document.querySelector("#book-title").value
+            return title
+        },
+        author: function(){
+            const author = document.querySelector("#book-author").value
+            return author
+        },
+        pages: function(){
+            const pages = document.querySelector("#book-pages").value
+            return pages
+        },
+        read: function(){
+            const read = document.querySelector("#book-read").value
+            return read        
+        }
     }
     function addtoLibrary(book){
-        library.add(book)
-        console.log(library)
+        library.books.push(book)
+        console.log(library.books)
     }
     
     function createBook(){
-        console.log(document.querySelector("#book-title").value);
-        console.log("book ops")
-
-        //const book = new Book(formInputs.title.value, formInputs.author.value, formInputs.pages.value, formInputs.read.value)
-        //addtoLibrary(book)
+        const book = new Book(formInputs.title, formInputs.author, formInputs.pages, formInputs.read)
+        addtoLibrary(book)
     }; createBook()
 };
 
@@ -121,6 +128,10 @@ function cardOperations(){
             }
         }
     }; 
+
+    function createCards(){
+        
+    }
 
 }
 
