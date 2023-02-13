@@ -39,6 +39,7 @@ function bookOperations() {
       }
     },
   };
+
   function addtoLibrary(book) {
     library.books.push(book);
     console.log(library.books);
@@ -72,12 +73,15 @@ function cardOperations() {
             const newCard = section.appendChild(
               document.createElement("article")
             );
-            newCard.setAttribute("class", `card ${book.title} align-self-center`);
+            newCard.setAttribute(
+              "class",
+              `card ${book.title} align-self-center`
+            );
             this.card = newCard;
           },
           header: function () {
             const header = this.card.appendChild(document.createElement("div"));
-            header.setAttribute("class", "card-header");
+            header.setAttribute("class", "card-header bg-warning text-black");
             header.textContent = book.title;
           },
           body: function () {
@@ -95,44 +99,60 @@ function cardOperations() {
             text.setAttribute("class", "card-text");
             text.textContent = book.author;
           },
-          footer: function () {
-            const footer = this.card.appendChild(document.createElement("div"));
-            footer.setAttribute("class", "card-footer");
-            this.footer = footer;
-          },
           pages: function () {
-            const pages = this.footer.appendChild(document.createElement("p"));
-            pages.setAttribute("class", "pages");
-            pages.textContent = `# of Pages ${book.pages}`;
-          },
-          read: function () {
-            const read = this.footer.appendChild(document.createElement("p"));
-            read.setAttribute("class", "read");
-            read.textContent = book.read();
-          },
+              const pages = this.body.appendChild(document.createElement("p"));
+              pages.setAttribute("class", "card-pages");
+              pages.textContent = `# of Pages ${book.pages}`;
+            },
+            read: function () {
+                const read = this.body.appendChild(document.createElement("p"));
+                read.setAttribute("class", "card-read");
+                read.textContent = book.read();
+            },
+            footer: function () {
+              const footer = this.card.appendChild(document.createElement("div"));
+              footer.setAttribute("class", "card-footer d-flex justify-content-space align-content-center bg-warning text-white");
+              this.footer = footer;
+            },
           remove: function () {
             const remove = this.footer.appendChild(
               document.createElement("button")
             );
             remove.setAttribute("id", "remove-book");
             remove.setAttribute("value", "Remove");
-            remove.textContent = "Remove";
-            remove.addEventListener("click", ()=>{
-                library.removeBook(this) // removes book
-                shelf.removeChild(this.card) // removes card
+            remove.setAttribute("class", "remove-button w-50 h-25 btn-danger")
+            remove.textContent = "Del";
+            remove.addEventListener("click", () => {
+              library.removeBook(this); // removes book
+              shelf.removeChild(this.card); // removes card
+            });
+          },
+          status: function () {
+            const toggle = this.footer.appendChild(document.createElement("button"));
+            toggle.setAttribute("class", "read-toggle w-50 h-25 btn-success")
+            toggle.setAttribute("id", "read-toggle");
+            toggle.setAttribute("value", "Read");
+            toggle.textContent = "Read";
+
+            let cardStatus = document.querySelector(".card-read");
+            toggle.addEventListener("click", ()=>{
+                if (cardStatus.textContent === "Unread"){
+                    cardStatus.textContent = "Read"
+                } else {cardStatus.textContent = "Unread"}
             })
           },
           create: function () {
-                this.newCard();
-                this.header();
-                this.body();
-                this.title();
-                this.text();
-                this.footer();
-                this.pages();
-                this.read();
-                this.remove();
-            },
+            this.newCard();
+            this.header();
+            this.body();
+            this.title();
+            this.text();
+            this.pages();
+            this.read();
+            this.footer();
+            this.remove();
+            this.status();
+          },
         };
         cards.create();
       } else {
@@ -148,7 +168,7 @@ function formOperations() {
   const newButton = document.querySelector(".new-book-btn");
 
   // Form Object
-  const form = {
+  const formObj = {
     form: null,
     newForm: function () {
       const container = document.querySelector(".new-book-container");
@@ -161,6 +181,7 @@ function formOperations() {
         event.preventDefault();
         bookOperations()
         cardOperations()
+        this.reset()
       });
     },
     legend: function () {
@@ -263,92 +284,102 @@ function formOperations() {
     },
   };
 
-  function createCards() {
-     const shelf = document.querySelector(".shelf");
-     for (let i = 0; i < library.books.length; i++) {
-       let book = library.books[i];
-       if (!library.books.includes(library.books[i].title)) {
-         // Card Object
-         const cards = {
-           card: null,
-           newCard: function () {
-             const section = document.querySelector(".shelf");
-             const newCard = section.appendChild(
-               document.createElement("article")
-             );
-             newCard.setAttribute("class", `card ${book.title}`);
-             this.card = newCard;
-           },
-           header: function () {
-             const header = this.card.appendChild(
-               document.createElement("div")
-             );
-             header.setAttribute("class", "card-header");
-             header.textContent = book.title;
-           },
-           body: function () {
-             const body = this.card.appendChild(document.createElement("div"));
-             body.setAttribute("class", "card-body");
-             this.body = body;
-           },
-           title: function () {
-             const title = this.body.appendChild(document.createElement("h5"));
-             title.setAttribute("class", "card-title");
-             title.textContent = book.title;
-           },
-           text: function () {
-             const text = this.body.appendChild(document.createElement("p"));
-             text.setAttribute("class", "card-text");
-             text.textContent = book.author;
-           },
-           footer: function () {
-             const footer = this.card.appendChild(
-               document.createElement("div")
-             );
-             footer.setAttribute("class", "card-footer");
-             this.footer = footer;
-           },
-           pages: function () {
-             const pages = this.footer.appendChild(document.createElement("p"));
-             pages.setAttribute("class", "pages");
-             pages.textContent = `# of Pages ${book.pages}`;
-           },
-           read: function () {
-             const read = this.footer.appendChild(document.createElement("p"));
-             read.setAttribute("class", "read");
-             read.textContent = book.read();
-           },
-           remove: function () {
-             const remove = this.footer.appendChild(
-               document.createElement("button")
-             );
-             remove.setAttribute("id", "remove-book");
-             remove.setAttribute("value", "Remove");
-             remove.textContent = "Remove";
-           },
-           create: function () {
-            this.newCard();
-            this.header();
-            this.body();
-            this.title();
-            this.text();
-            this.footer();
-            this.pages();
-            this.read();
-            this.remove();
-           },
-         };
-         cards.create();
-       } else {
-         console.log("exists");
-       }
-     }
-   }
-   createCards();
+ // function libraryCards() {
+ //    const shelf = document.querySelector(".shelf");
+ //    for (let i = 0; i < library.books.length; i++) {
+ //      let book = library.books[i];
+ //      if (!library.books.includes(library.books[i].title)) {
+ //        // Card Object
+ //        const cards = {
+ //          card: null,
+ //          newCard: function () {
+ //            const section = document.querySelector(".shelf");
+ //            const newCard = section.appendChild(
+ //              document.createElement("article")
+ //            );
+ //            newCard.setAttribute("class", `card ${book.title}`);
+ //            this.card = newCard;
+ //          },
+ //          header: function () {
+ //            const header = this.card.appendChild(
+ //              document.createElement("div")
+ //            );
+ //            header.setAttribute("class", "card-header");
+ //            header.textContent = book.title;
+ //          },
+ //          body: function () {
+ //            const body = this.card.appendChild(document.createElement("div"));
+ //            body.setAttribute("class", "card-body");
+ //            this.body = body;
+ //          },
+ //          title: function () {
+ //            const title = this.body.appendChild(document.createElement("h5"));
+ //            title.setAttribute("class", "card-title");
+ //            title.textContent = book.title;
+ //          },
+ //          text: function () {
+ //            const text = this.body.appendChild(document.createElement("p"));
+ //            text.setAttribute("class", "card-text");
+ //            text.textContent = book.author;
+ //          },
+ //          pages: function () {
+ //              const pages = this.body.appendChild(document.createElement("p"));
+ //              pages.setAttribute("class", "pages");
+ //              pages.textContent = `Pages ${book.pages}`;
+ //           },
+ //           read: function () {
+ //               const read = this.body.appendChild(document.createElement("p"));
+ //               read.setAttribute("class", "read");
+ //               read.textContent = book.read();
+ //           },
+ //           footer: function () {
+ //             const footer = this.card.appendChild(
+ //               document.createElement("div")
+ //             );
+ //             footer.setAttribute("class", "card-footer");
+ //             this.footer = footer;
+ //           },
+ //          remove: function () {
+ //            const remove = this.footer.appendChild(
+ //              document.createElement("button")
+ //            );
+ //            remove.setAttribute("class", "w-25")
+ //            remove.setAttribute("id", "remove-book");
+ //            remove.setAttribute("value", "Remove");
+ //            remove.textContent = "Remove";
+ //          },
+ //          status: function(){
+ //           console.log("status")
+ //           const readBook = this.footer.appendChild(document.createElement("button"));
+ //           readBook.setAttribute("class", "w-25")
+ //           readBook.setAttribute("id","read-book")
+ //           readBook.setAttribute("value", "Read")
+ //           readBook.textContent = "Read"
+ //          },
+ //          create: function () {
+ //           this.newCard();
+ //           this.header();
+ //           this.body();
+ //           this.title();
+ //           this.text();
+ //           this.pages();
+ //           this.read();
+ //           this.footer();
+ //           this.remove();
+ //           this.status();
+ //          },
+ //        };
+ //        cards.create();
+ //      } else {
+ //        console.log("exists");
+ //      }
+ //    }
+ //  }
+ //  libraryCards();
 
   newButton.addEventListener("click", () => {
     console.log("click");
-    form.create();
+    formObj.create();
   });
 }
 formOperations();
