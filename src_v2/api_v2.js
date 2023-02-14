@@ -27,22 +27,22 @@ function createLibrary() {
     }, // creates the main with class Library
     aside: function () {
       const aside = this.main.appendChild(document.createElement("aside"));
-      aside.setAttribute("class", "col-4 h-75 d-flex flex-column justify-content-around align-items-center  bg-secondary aside")
+      aside.setAttribute("class", "col-4 h-100 d-flex flex-column justify-content-around align-items-center  bg-secondary aside")
 
       const btnContainer = aside.appendChild(document.createElement("div"))
-      btnContainer.setAttribute("class", " row btn-container d-flex justify-content-center");
+      btnContainer.setAttribute("class", " row btn-container d-flex justify-content-center h-25 w-75");
 
       const button = btnContainer.appendChild(document.createElement("button"));
-      button.setAttribute("class", "col new-book-btn btn-primary")
+      button.setAttribute("class", "col new-book-btn btn-primary h-25 ")
       button.textContent = "Add Book"
 
       const container = aside.appendChild(document.createElement("div"));
       container.setAttribute(
-        "class","new-book-container row h-50 w-75  bg-primary d-flex justify-content-center align-items-center");
+        "class","new-book-container row h-50 w-75  bg-primary d-flex flex-column justify-content-space align-items-center");
     }, //  defines Form and form creation button
     section: function () {
       const section = this.main.appendChild(document.createElement("section"));
-      section.setAttribute("class", "shelf col-8 row vh-75 mh-75 justify-content-center align-content-start overflow-auto bg-dark p-4 gap-2");
+      section.setAttribute("class", "shelf col-8 h-100  align-self-center justify-content-center align-content-start overflow-auto bg-dark p-4 gap-2");
       this.section = section;
     } // creates a section with class shelf
   };

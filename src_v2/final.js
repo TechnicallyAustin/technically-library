@@ -173,7 +173,7 @@ function formOperations() {
     newForm: function () {
       const container = document.querySelector(".new-book-container");
       const newForm = container.appendChild(document.createElement("form"));
-      newForm.setAttribute("class", "book-form");
+      newForm.setAttribute("class", "book-form col");
       this.form = newForm;
     },
     prevent: function () {
@@ -186,7 +186,7 @@ function formOperations() {
     },
     legend: function () {
       const legend = this.form.appendChild(document.createElement("legend"));
-      legend.setAttribute("class", "legend");
+      legend.setAttribute("class", "legend row");
       legend.textContent = "Read anything fun?";
     },
     inputs: function () {
@@ -199,18 +199,12 @@ function formOperations() {
           fieldset: null,
           newField: function () {
             let field = form.appendChild(document.createElement("fieldset"));
-            field.setAttribute(
-              "class",
-              `${value}-field row d-flex flex-column align-items-start justify-content-space ms-4 `
-            );
+            field.setAttribute("class",`${value}-field d-flex`);
             this.fieldset = field;
 
             if (value === "read") {
               let field = form.appendChild(document.createElement("fieldset"));
-              field.setAttribute(
-                "class",
-                `${value}-field row d-flex  align-items-center justify-content-space p-2 `
-              );
+              field.setAttribute("class",`${value}-field row d-flex flex-column`);
               this.fieldset = field;
             }
           },
@@ -222,7 +216,7 @@ function formOperations() {
               label.setAttribute("for", `book-${value}`);
               label.setAttribute(
                 "class",
-                "form-label align-items-start mb-0 pt-2"
+                "form-label"
               );
               label.textContent = "# of Pages";
             } else {
